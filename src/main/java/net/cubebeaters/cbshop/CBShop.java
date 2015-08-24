@@ -25,7 +25,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * they want with cash in a nice clean GUI
  *
  * @author Systemx86 (Bananna)
- * @version 0.7
+ * @version 1.0
  */
 public class CBShop extends JavaPlugin implements Listener {
 
@@ -170,7 +170,31 @@ public class CBShop extends JavaPlugin implements Listener {
      * Creates all the contents of the Armor Shop
      */
     public void createArmorMenu() {
-        // TODO
+        // Create Leather Armor Set.
+        createPurchaseItem(Material.LEATHER_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Leather.head.slot"), 1, this.getConfig().getInt("Items.Armor.Leather.head.cost"));
+        createPurchaseItem(Material.LEATHER_CHESTPLATE, armorMenu, this.getConfig().getInt("Items.Armor.Leather.chest.slot"), 1, this.getConfig().getInt("Items.Armor.Leather.chest.cost"));
+        createPurchaseItem(Material.LEATHER_LEGGINGS, armorMenu, this.getConfig().getInt("Items.Armor.Leather.legs.slot"), 1, this.getConfig().getInt("Items.Armor.Leather.legs.cost"));
+        createPurchaseItem(Material.LEATHER_BOOTS, armorMenu, this.getConfig().getInt("Items.Armor.Leather.feet.slot"), 1, this.getConfig().getInt("Items.Armor.Leather.feet.cost"));
+        // Create Chainmail Armor Set.
+        createPurchaseItem(Material.CHAINMAIL_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Chain.head.slot"),1,this.getConfig().getInt("Items.Armor.Chain.head.cost"));
+        createPurchaseItem(Material.CHAINMAIL_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Chain.chest.slot"),1,this.getConfig().getInt("Items.Armor.Chain.chest.cost"));
+        createPurchaseItem(Material.CHAINMAIL_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Chain.legs.slot"),1,this.getConfig().getInt("Items.Armor.Chain.legs.cost"));
+        createPurchaseItem(Material.CHAINMAIL_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Chain.feet.slot"),1,this.getConfig().getInt("Items.Armor.Chain.feet.cost"));
+        // Create Iron Armor Set.
+        createPurchaseItem(Material.IRON_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Iron.head.slot"),1,this.getConfig().getInt("Items.Armor.Iron.head.cost"));
+        createPurchaseItem(Material.IRON_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Iron.chest.slot"),1,this.getConfig().getInt("Items.Armor.Iron.chest.cost"));
+        createPurchaseItem(Material.IRON_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Iron.legs.slot"),1,this.getConfig().getInt("Items.Armor.Iron.legs.cost"));
+        createPurchaseItem(Material.IRON_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Iron.feet.slot"),1,this.getConfig().getInt("Items.Armor.Iron.feet.cost"));
+        // Create Gold Armor Set.
+        createPurchaseItem(Material.GOLD_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Gold.head.slot"),1,this.getConfig().getInt("Items.Armor.Gold.head.cost"));
+        createPurchaseItem(Material.GOLD_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Gold.chest.slot"),1,this.getConfig().getInt("Items.Armor.Gold.chest.cost"));
+        createPurchaseItem(Material.GOLD_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Gold.legs.slot"),1,this.getConfig().getInt("Items.Armor.Gold.legs.cost"));
+        createPurchaseItem(Material.GOLD_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Gold.feet.slot"),1,this.getConfig().getInt("Items.Armor.Gold.feet.cost"));
+        // Create Diamond Armor Set.
+        createPurchaseItem(Material.DIAMOND_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Diamond.head.slot"),1,this.getConfig().getInt("Items.Armor.Diamond.head.cost"));
+        createPurchaseItem(Material.DIAMOND_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Diamond.chest.slot"),1,this.getConfig().getInt("Items.Armor.Diamond.chest.cost"));
+        createPurchaseItem(Material.DIAMOND_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Diamond.legs.slot"),1,this.getConfig().getInt("Items.Armor.Diamond.legs.cost"));
+        createPurchaseItem(Material.DIAMOND_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Diamond.feet.slot"),1,this.getConfig().getInt("Items.Armor.Diamond.feet.cost"));
     }
 
     /**
