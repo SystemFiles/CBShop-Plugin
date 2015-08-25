@@ -12,6 +12,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -85,6 +86,7 @@ public class CBShop extends JavaPlugin implements Listener {
         Player p = (Player) event.getWhoClicked(); // The Player who clicked.
         Inventory inv = event.getInventory(); // The Inventory that was used.
         ItemStack clicked = event.getCurrentItem(); // The item that was clicked.
+        ClickType clickType = event.getClick();
 
         if (inv.getName().equals(mainMenu.getName())) {
             if (null != clicked.getType()) {
@@ -111,6 +113,8 @@ public class CBShop extends JavaPlugin implements Listener {
                         break;
                 }
             }
+        } else if (inv.getName().equals(armorMenu.getName())) {
+            // Check which armor peice was clicked. Then Run appropriate method with appropriate perameters.
         }
     }
 
@@ -176,25 +180,28 @@ public class CBShop extends JavaPlugin implements Listener {
         createPurchaseItem(Material.LEATHER_LEGGINGS, armorMenu, this.getConfig().getInt("Items.Armor.Leather.legs.slot"), 1, this.getConfig().getInt("Items.Armor.Leather.legs.cost"));
         createPurchaseItem(Material.LEATHER_BOOTS, armorMenu, this.getConfig().getInt("Items.Armor.Leather.feet.slot"), 1, this.getConfig().getInt("Items.Armor.Leather.feet.cost"));
         // Create Chainmail Armor Set.
-        createPurchaseItem(Material.CHAINMAIL_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Chain.head.slot"),1,this.getConfig().getInt("Items.Armor.Chain.head.cost"));
-        createPurchaseItem(Material.CHAINMAIL_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Chain.chest.slot"),1,this.getConfig().getInt("Items.Armor.Chain.chest.cost"));
-        createPurchaseItem(Material.CHAINMAIL_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Chain.legs.slot"),1,this.getConfig().getInt("Items.Armor.Chain.legs.cost"));
-        createPurchaseItem(Material.CHAINMAIL_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Chain.feet.slot"),1,this.getConfig().getInt("Items.Armor.Chain.feet.cost"));
+        createPurchaseItem(Material.CHAINMAIL_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Chain.head.slot"), 1, this.getConfig().getInt("Items.Armor.Chain.head.cost"));
+        createPurchaseItem(Material.CHAINMAIL_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Chain.chest.slot"), 1, this.getConfig().getInt("Items.Armor.Chain.chest.cost"));
+        createPurchaseItem(Material.CHAINMAIL_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Chain.legs.slot"), 1, this.getConfig().getInt("Items.Armor.Chain.legs.cost"));
+        createPurchaseItem(Material.CHAINMAIL_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Chain.feet.slot"), 1, this.getConfig().getInt("Items.Armor.Chain.feet.cost"));
         // Create Iron Armor Set.
-        createPurchaseItem(Material.IRON_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Iron.head.slot"),1,this.getConfig().getInt("Items.Armor.Iron.head.cost"));
-        createPurchaseItem(Material.IRON_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Iron.chest.slot"),1,this.getConfig().getInt("Items.Armor.Iron.chest.cost"));
-        createPurchaseItem(Material.IRON_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Iron.legs.slot"),1,this.getConfig().getInt("Items.Armor.Iron.legs.cost"));
-        createPurchaseItem(Material.IRON_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Iron.feet.slot"),1,this.getConfig().getInt("Items.Armor.Iron.feet.cost"));
+        createPurchaseItem(Material.IRON_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Iron.head.slot"), 1, this.getConfig().getInt("Items.Armor.Iron.head.cost"));
+        createPurchaseItem(Material.IRON_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Iron.chest.slot"), 1, this.getConfig().getInt("Items.Armor.Iron.chest.cost"));
+        createPurchaseItem(Material.IRON_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Iron.legs.slot"), 1, this.getConfig().getInt("Items.Armor.Iron.legs.cost"));
+        createPurchaseItem(Material.IRON_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Iron.feet.slot"), 1, this.getConfig().getInt("Items.Armor.Iron.feet.cost"));
         // Create Gold Armor Set.
-        createPurchaseItem(Material.GOLD_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Gold.head.slot"),1,this.getConfig().getInt("Items.Armor.Gold.head.cost"));
-        createPurchaseItem(Material.GOLD_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Gold.chest.slot"),1,this.getConfig().getInt("Items.Armor.Gold.chest.cost"));
-        createPurchaseItem(Material.GOLD_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Gold.legs.slot"),1,this.getConfig().getInt("Items.Armor.Gold.legs.cost"));
-        createPurchaseItem(Material.GOLD_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Gold.feet.slot"),1,this.getConfig().getInt("Items.Armor.Gold.feet.cost"));
+        createPurchaseItem(Material.GOLD_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Gold.head.slot"), 1, this.getConfig().getInt("Items.Armor.Gold.head.cost"));
+        createPurchaseItem(Material.GOLD_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Gold.chest.slot"), 1, this.getConfig().getInt("Items.Armor.Gold.chest.cost"));
+        createPurchaseItem(Material.GOLD_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Gold.legs.slot"), 1, this.getConfig().getInt("Items.Armor.Gold.legs.cost"));
+        createPurchaseItem(Material.GOLD_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Gold.feet.slot"), 1, this.getConfig().getInt("Items.Armor.Gold.feet.cost"));
         // Create Diamond Armor Set.
-        createPurchaseItem(Material.DIAMOND_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Diamond.head.slot"),1,this.getConfig().getInt("Items.Armor.Diamond.head.cost"));
-        createPurchaseItem(Material.DIAMOND_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Diamond.chest.slot"),1,this.getConfig().getInt("Items.Armor.Diamond.chest.cost"));
-        createPurchaseItem(Material.DIAMOND_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Diamond.legs.slot"),1,this.getConfig().getInt("Items.Armor.Diamond.legs.cost"));
-        createPurchaseItem(Material.DIAMOND_HELMET,armorMenu,this.getConfig().getInt("Items.Armor.Diamond.feet.slot"),1,this.getConfig().getInt("Items.Armor.Diamond.feet.cost"));
+        createPurchaseItem(Material.DIAMOND_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Diamond.head.slot"), 1, this.getConfig().getInt("Items.Armor.Diamond.head.cost"));
+        createPurchaseItem(Material.DIAMOND_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Diamond.chest.slot"), 1, this.getConfig().getInt("Items.Armor.Diamond.chest.cost"));
+        createPurchaseItem(Material.DIAMOND_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Diamond.legs.slot"), 1, this.getConfig().getInt("Items.Armor.Diamond.legs.cost"));
+        createPurchaseItem(Material.DIAMOND_HELMET, armorMenu, this.getConfig().getInt("Items.Armor.Diamond.feet.slot"), 1, this.getConfig().getInt("Items.Armor.Diamond.feet.cost"));
+
+        // Create Exit Button
+        createMenuItem(Material.ENDER_CHEST, armorMenu, 26, ChatColor.BLUE + "Exit", ChatColor.GRAY + "Click to exit to the main menu.");
     }
 
     /**
@@ -202,14 +209,17 @@ public class CBShop extends JavaPlugin implements Listener {
      */
     public void createWeaponMenu() {
         // Create Swords
-        createPurchaseItem(Material.WOOD_SWORD,weaponMenu,this.getConfig().getInt("Items.Weapons.Swords.Wood.slot"),1,this.getConfig().getInt("Items.Weapons.Swords.Wood.cost"));
-        createPurchaseItem(Material.STONE_SWORD,weaponMenu,this.getConfig().getInt("Items.Weapons.Swords.Stone.slot"),1,this.getConfig().getInt("Items.Weapons.Swords.Stone.cost"));
-        createPurchaseItem(Material.IRON_SWORD,weaponMenu,this.getConfig().getInt("Items.Weapons.Swords.Iron.slot"),1,this.getConfig().getInt("Items.Weapons.Swords.Iron.cost"));
-        createPurchaseItem(Material.GOLD_SWORD,weaponMenu,this.getConfig().getInt("Items.Weapons.Swords.Gold.slot"),1,this.getConfig().getInt("Items.Weapons.Swords.Gold.cost"));
-        createPurchaseItem(Material.DIAMOND_SWORD,weaponMenu,this.getConfig().getInt("Items.Weapons.Swords.Diamond.slot"),1,this.getConfig().getInt("Items.Weapons.Swords.Diamond.cost"));
+        createPurchaseItem(Material.WOOD_SWORD, weaponMenu, this.getConfig().getInt("Items.Weapons.Swords.Wood.slot"), 1, this.getConfig().getInt("Items.Weapons.Swords.Wood.cost"));
+        createPurchaseItem(Material.STONE_SWORD, weaponMenu, this.getConfig().getInt("Items.Weapons.Swords.Stone.slot"), 1, this.getConfig().getInt("Items.Weapons.Swords.Stone.cost"));
+        createPurchaseItem(Material.IRON_SWORD, weaponMenu, this.getConfig().getInt("Items.Weapons.Swords.Iron.slot"), 1, this.getConfig().getInt("Items.Weapons.Swords.Iron.cost"));
+        createPurchaseItem(Material.GOLD_SWORD, weaponMenu, this.getConfig().getInt("Items.Weapons.Swords.Gold.slot"), 1, this.getConfig().getInt("Items.Weapons.Swords.Gold.cost"));
+        createPurchaseItem(Material.DIAMOND_SWORD, weaponMenu, this.getConfig().getInt("Items.Weapons.Swords.Diamond.slot"), 1, this.getConfig().getInt("Items.Weapons.Swords.Diamond.cost"));
         // Create Archery
-        createPurchaseItem(Material.BOW,weaponMenu,this.getConfig().getInt("Items.Weapons.Archery.Bow.slot"),1,this.getConfig().getInt("Items.Weapons.Archery.Bow.cost"));
-        createPurchaseItem(Material.BOW,weaponMenu,this.getConfig().getInt("Items.Weapons.Archery.Arrow.slot"),this.getConfig().getInt("Items.Weapons.Archery.Arrow.amount"),this.getConfig().getInt("Items.Weapons.Archery.Arrow.cost"));
+        createPurchaseItem(Material.BOW, weaponMenu, this.getConfig().getInt("Items.Weapons.Archery.Bow.slot"), 1, this.getConfig().getInt("Items.Weapons.Archery.Bow.cost"));
+        createPurchaseItem(Material.BOW, weaponMenu, this.getConfig().getInt("Items.Weapons.Archery.Arrow.slot"), this.getConfig().getInt("Items.Weapons.Archery.Arrow.amount"), this.getConfig().getInt("Items.Weapons.Archery.Arrow.cost"));
+
+        // Create Exit Button
+        createMenuItem(Material.ENDER_CHEST, weaponMenu, 26, ChatColor.BLUE + "Exit", ChatColor.GRAY + "Click to exit to the main menu.");
     }
 
     /**
@@ -217,23 +227,26 @@ public class CBShop extends JavaPlugin implements Listener {
      */
     public void createToolsMenu() {
         // Create Pickaxes'
-        createPurchaseItem(Material.WOOD_PICKAXE,toolMenu,this.getConfig().getInt("Items.Tools.Pickaxe.Wood.slot"),1,this.getConfig().getInt("Items.Tools.Pickaxe.Wood.cost"));
-        createPurchaseItem(Material.STONE_PICKAXE,toolMenu,this.getConfig().getInt("Items.Tools.Pickaxe.Stone.slot"),1,this.getConfig().getInt("Items.Tools.Pickaxe.Stone.cost"));
-        createPurchaseItem(Material.IRON_PICKAXE,toolMenu,this.getConfig().getInt("Items.Tools.Pickaxe.Iron.slot"),1,this.getConfig().getInt("Items.Tools.Pickaxe.Iron.cost"));
-        createPurchaseItem(Material.GOLD_PICKAXE,toolMenu,this.getConfig().getInt("Items.Tools.Pickaxe.Gold.slot"),1,this.getConfig().getInt("Items.Tools.Pickaxe.Gold.cost"));
-        createPurchaseItem(Material.DIAMOND_PICKAXE,toolMenu,this.getConfig().getInt("Items.Tools.Pickaxe.Diamond.slot"),1,this.getConfig().getInt("Items.Tools.Pickaxe.Diamond.cost"));
+        createPurchaseItem(Material.WOOD_PICKAXE, toolMenu, this.getConfig().getInt("Items.Tools.Pickaxe.Wood.slot"), 1, this.getConfig().getInt("Items.Tools.Pickaxe.Wood.cost"));
+        createPurchaseItem(Material.STONE_PICKAXE, toolMenu, this.getConfig().getInt("Items.Tools.Pickaxe.Stone.slot"), 1, this.getConfig().getInt("Items.Tools.Pickaxe.Stone.cost"));
+        createPurchaseItem(Material.IRON_PICKAXE, toolMenu, this.getConfig().getInt("Items.Tools.Pickaxe.Iron.slot"), 1, this.getConfig().getInt("Items.Tools.Pickaxe.Iron.cost"));
+        createPurchaseItem(Material.GOLD_PICKAXE, toolMenu, this.getConfig().getInt("Items.Tools.Pickaxe.Gold.slot"), 1, this.getConfig().getInt("Items.Tools.Pickaxe.Gold.cost"));
+        createPurchaseItem(Material.DIAMOND_PICKAXE, toolMenu, this.getConfig().getInt("Items.Tools.Pickaxe.Diamond.slot"), 1, this.getConfig().getInt("Items.Tools.Pickaxe.Diamond.cost"));
         // Create Axes'
-        createPurchaseItem(Material.WOOD_AXE,toolMenu,this.getConfig().getInt("Items.Tools.Axe.Wood.slot"),1,this.getConfig().getInt("Items.Tools.Axe.Wood.cost"));
-        createPurchaseItem(Material.STONE_AXE,toolMenu,this.getConfig().getInt("Items.Tools.Axe.Stone.slot"),1,this.getConfig().getInt("Items.Tools.Axe.Stone.cost"));
-        createPurchaseItem(Material.IRON_AXE,toolMenu,this.getConfig().getInt("Items.Tools.Axe.Iron.slot"),1,this.getConfig().getInt("Items.Tools.Axe.Iron.cost"));
-        createPurchaseItem(Material.GOLD_AXE,toolMenu,this.getConfig().getInt("Items.Tools.Axe.Gold.slot"),1,this.getConfig().getInt("Items.Tools.Axe.Gold.cost"));
-        createPurchaseItem(Material.DIAMOND_AXE,toolMenu,this.getConfig().getInt("Items.Tools.Axe.Diamond.slot"),1,this.getConfig().getInt("Items.Tools.Axe.Diamond.cost"));
+        createPurchaseItem(Material.WOOD_AXE, toolMenu, this.getConfig().getInt("Items.Tools.Axe.Wood.slot"), 1, this.getConfig().getInt("Items.Tools.Axe.Wood.cost"));
+        createPurchaseItem(Material.STONE_AXE, toolMenu, this.getConfig().getInt("Items.Tools.Axe.Stone.slot"), 1, this.getConfig().getInt("Items.Tools.Axe.Stone.cost"));
+        createPurchaseItem(Material.IRON_AXE, toolMenu, this.getConfig().getInt("Items.Tools.Axe.Iron.slot"), 1, this.getConfig().getInt("Items.Tools.Axe.Iron.cost"));
+        createPurchaseItem(Material.GOLD_AXE, toolMenu, this.getConfig().getInt("Items.Tools.Axe.Gold.slot"), 1, this.getConfig().getInt("Items.Tools.Axe.Gold.cost"));
+        createPurchaseItem(Material.DIAMOND_AXE, toolMenu, this.getConfig().getInt("Items.Tools.Axe.Diamond.slot"), 1, this.getConfig().getInt("Items.Tools.Axe.Diamond.cost"));
         // Create Spades
-        createPurchaseItem(Material.WOOD_SPADE,toolMenu,this.getConfig().getInt("Items.Tools.Shovel.Wood.slot"),1,this.getConfig().getInt("Items.Tools.Shovel.Wood.cost"));
-        createPurchaseItem(Material.STONE_SPADE,toolMenu,this.getConfig().getInt("Items.Tools.Shovel.Stone.slot"),1,this.getConfig().getInt("Items.Tools.Shovel.Stone.cost"));
-        createPurchaseItem(Material.IRON_SPADE,toolMenu,this.getConfig().getInt("Items.Tools.Shovel.Iron.slot"),1,this.getConfig().getInt("Items.Tools.Shovel.Iron.cost"));
-        createPurchaseItem(Material.GOLD_SPADE,toolMenu,this.getConfig().getInt("Items.Tools.Shovel.Gold.slot"),1,this.getConfig().getInt("Items.Tools.Shovel.Gold.cost"));
-        createPurchaseItem(Material.DIAMOND_SPADE,toolMenu,this.getConfig().getInt("Items.Tools.Shovel.Diamond.slot"),1,this.getConfig().getInt("Items.Tools.Shovel.Diamond.cost"));
+        createPurchaseItem(Material.WOOD_SPADE, toolMenu, this.getConfig().getInt("Items.Tools.Shovel.Wood.slot"), 1, this.getConfig().getInt("Items.Tools.Shovel.Wood.cost"));
+        createPurchaseItem(Material.STONE_SPADE, toolMenu, this.getConfig().getInt("Items.Tools.Shovel.Stone.slot"), 1, this.getConfig().getInt("Items.Tools.Shovel.Stone.cost"));
+        createPurchaseItem(Material.IRON_SPADE, toolMenu, this.getConfig().getInt("Items.Tools.Shovel.Iron.slot"), 1, this.getConfig().getInt("Items.Tools.Shovel.Iron.cost"));
+        createPurchaseItem(Material.GOLD_SPADE, toolMenu, this.getConfig().getInt("Items.Tools.Shovel.Gold.slot"), 1, this.getConfig().getInt("Items.Tools.Shovel.Gold.cost"));
+        createPurchaseItem(Material.DIAMOND_SPADE, toolMenu, this.getConfig().getInt("Items.Tools.Shovel.Diamond.slot"), 1, this.getConfig().getInt("Items.Tools.Shovel.Diamond.cost"));
+
+        // Create Exit Button
+        createMenuItem(Material.ENDER_CHEST, toolMenu, 26, ChatColor.BLUE + "Exit", ChatColor.GRAY + "Click to exit to the main menu.");
     }
 
     /**
@@ -241,18 +254,27 @@ public class CBShop extends JavaPlugin implements Listener {
      */
     public void createOreMenu() {
         // Create Ore Items
-        createPurchaseItem(Material.COAL,oreMenu,this.getConfig().getInt("Items.Mining.Ore.Coal.slot"),this.getConfig().getInt("Items.Mining.Ore.Coal.amount"),this.getConfig().getInt("Items.Mining.Ore.Coal.cost"));
-        createPurchaseItem(Material.IRON_ORE,oreMenu,this.getConfig().getInt("Items.Mining.Ore.Iron.slot"),this.getConfig().getInt("Items.Mining.Ore.Iron.amount"),this.getConfig().getInt("Items.Mining.Ore.Iron.cost"));
-        createPurchaseItem(Material.GOLD_ORE,oreMenu,this.getConfig().getInt("Items.Mining.Ore.Gold.slot"),this.getConfig().getInt("Items.Mining.Ore.Gold.amount"),this.getConfig().getInt("Items.Mining.Ore.Gold.cost"));
-        createPurchaseItem(Material.DIAMOND,oreMenu,this.getConfig().getInt("Items.Mining.Ore.Diamond.slot"),this.getConfig().getInt("Items.Mining.Ore.Diamond.amount"),this.getConfig().getInt("Items.Mining.Ore.Diamond.cost"));
-        createPurchaseItem(Material.REDSTONE,oreMenu,this.getConfig().getInt("Items.Mining.Ore.Redstone.slot"),this.getConfig().getInt("Items.Mining.Ore.Redstone.amount"),this.getConfig().getInt("Items.Mining.Ore.Redstone.cost"));
-        createPurchaseItem(Material.EMERALD,oreMenu,this.getConfig().getInt("Items.Mining.Ore.Emerald.slot"),this.getConfig().getInt("Items.Mining.Ore.Emerald.amount"),this.getConfig().getInt("Items.Mining.Ore.Emerald.cost"));
+        createPurchaseItem(Material.COAL, oreMenu, this.getConfig().getInt("Items.Mining.Ore.Coal.slot"), this.getConfig().getInt("Items.Mining.Ore.Coal.amount"), this.getConfig().getInt("Items.Mining.Ore.Coal.cost"));
+        createPurchaseItem(Material.IRON_ORE, oreMenu, this.getConfig().getInt("Items.Mining.Ore.Iron.slot"), this.getConfig().getInt("Items.Mining.Ore.Iron.amount"), this.getConfig().getInt("Items.Mining.Ore.Iron.cost"));
+        createPurchaseItem(Material.GOLD_ORE, oreMenu, this.getConfig().getInt("Items.Mining.Ore.Gold.slot"), this.getConfig().getInt("Items.Mining.Ore.Gold.amount"), this.getConfig().getInt("Items.Mining.Ore.Gold.cost"));
+        createPurchaseItem(Material.DIAMOND, oreMenu, this.getConfig().getInt("Items.Mining.Ore.Diamond.slot"), this.getConfig().getInt("Items.Mining.Ore.Diamond.amount"), this.getConfig().getInt("Items.Mining.Ore.Diamond.cost"));
+        createPurchaseItem(Material.REDSTONE, oreMenu, this.getConfig().getInt("Items.Mining.Ore.Redstone.slot"), this.getConfig().getInt("Items.Mining.Ore.Redstone.amount"), this.getConfig().getInt("Items.Mining.Ore.Redstone.cost"));
+        createPurchaseItem(Material.EMERALD, oreMenu, this.getConfig().getInt("Items.Mining.Ore.Emerald.slot"), this.getConfig().getInt("Items.Mining.Ore.Emerald.amount"), this.getConfig().getInt("Items.Mining.Ore.Emerald.cost"));
         // Create Ingot Items
-        createPurchaseItem(Material.LAPIS_ORE,oreMenu,this.getConfig().getInt("Items.Mining.Ingots.lapis.slot"),this.getConfig().getInt("Items.Mining.Ingots.lapis.amount"),this.getConfig().getInt("Items.Mining.Ingots.lapis.cost"));
-        createPurchaseItem(Material.IRON_INGOT,oreMenu,this.getConfig().getInt("Items.Mining.Ingots.Iron.slot"),this.getConfig().getInt("Items.Mining.Ingots.Iron.amount"),this.getConfig().getInt("Items.Mining.Ingots.Iron.cost"));
-        createPurchaseItem(Material.GOLD_INGOT,oreMenu,this.getConfig().getInt("Items.Mining.Ingots.Gold.slot"),this.getConfig().getInt("Items.Mining.Ingots.Gold.amount"),this.getConfig().getInt("Items.Mining.Ingots.Gold.cost"));
-        createPurchaseItem(Material.DIAMOND,oreMenu,this.getConfig().getInt("Items.Mining.Ingots.Diamond.slot"),this.getConfig().getInt("Items.Mining.Ingots.Diamond.amount"),this.getConfig().getInt("Items.Mining.Ingots.Diamond.cost"));
-        createPurchaseItem(Material.EMERALD,oreMenu,this.getConfig().getInt("Items.Mining.Ingots.Emerald.slot"),this.getConfig().getInt("Items.Mining.Ingots.Emerald.amount"),this.getConfig().getInt("Items.Mining.Ingots.Emerald.cost"));
+        createPurchaseItem(Material.LAPIS_ORE, oreMenu, this.getConfig().getInt("Items.Mining.Ingots.lapis.slot"), this.getConfig().getInt("Items.Mining.Ingots.lapis.amount"), this.getConfig().getInt("Items.Mining.Ingots.lapis.cost"));
+        createPurchaseItem(Material.IRON_INGOT, oreMenu, this.getConfig().getInt("Items.Mining.Ingots.Iron.slot"), this.getConfig().getInt("Items.Mining.Ingots.Iron.amount"), this.getConfig().getInt("Items.Mining.Ingots.Iron.cost"));
+        createPurchaseItem(Material.GOLD_INGOT, oreMenu, this.getConfig().getInt("Items.Mining.Ingots.Gold.slot"), this.getConfig().getInt("Items.Mining.Ingots.Gold.amount"), this.getConfig().getInt("Items.Mining.Ingots.Gold.cost"));
+        createPurchaseItem(Material.DIAMOND, oreMenu, this.getConfig().getInt("Items.Mining.Ingots.Diamond.slot"), this.getConfig().getInt("Items.Mining.Ingots.Diamond.amount"), this.getConfig().getInt("Items.Mining.Ingots.Diamond.cost"));
+        createPurchaseItem(Material.EMERALD, oreMenu, this.getConfig().getInt("Items.Mining.Ingots.Emerald.slot"), this.getConfig().getInt("Items.Mining.Ingots.Emerald.amount"), this.getConfig().getInt("Items.Mining.Ingots.Emerald.cost"));
+
+        // Create Exit Button
+        createMenuItem(Material.ENDER_CHEST, oreMenu, 26, ChatColor.BLUE + "Exit", ChatColor.GRAY + "Click to exit to the main menu.");
+    }
+
+    public void itemTransaction(Material item, int amount, int cost, ClickType leftRight) {
+        
+        // TODO
+        
     }
 
     /**
@@ -284,6 +306,16 @@ public class CBShop extends JavaPlugin implements Listener {
         inv.setItem(slot, item);
     }
 
+    /**
+     *
+     * Creates a clickable menu Item for the GUI.
+     *
+     * @param material The material of the item.
+     * @param inv The Inventory to put the Item into.
+     * @param Slot The slot in the inventory where the item will be held
+     * @param name The display name of the item.
+     * @param lore The Lore/Description of the item.
+     */
     public void createMenuItem(Material material, Inventory inv, int Slot, String name, String lore) {
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
