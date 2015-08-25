@@ -201,7 +201,15 @@ public class CBShop extends JavaPlugin implements Listener {
      * Creates all the contents of the Weapons Shop
      */
     public void createWeaponMenu() {
-        // TODO
+        // Create Swords
+        createPurchaseItem(Material.WOOD_SWORD,weaponMenu,this.getConfig().getInt("Items.Weapons.Swords.Wood.slot"),1,this.getConfig().getInt("Items.Weapons.Swords.Wood.cost"));
+        createPurchaseItem(Material.STONE_SWORD,weaponMenu,this.getConfig().getInt("Items.Weapons.Swords.Stone.slot"),1,this.getConfig().getInt("Items.Weapons.Swords.Stone.cost"));
+        createPurchaseItem(Material.IRON_SWORD,weaponMenu,this.getConfig().getInt("Items.Weapons.Swords.Iron.slot"),1,this.getConfig().getInt("Items.Weapons.Swords.Iron.cost"));
+        createPurchaseItem(Material.GOLD_SWORD,weaponMenu,this.getConfig().getInt("Items.Weapons.Swords.Gold.slot"),1,this.getConfig().getInt("Items.Weapons.Swords.Gold.cost"));
+        createPurchaseItem(Material.DIAMOND_SWORD,weaponMenu,this.getConfig().getInt("Items.Weapons.Swords.Diamond.slot"),1,this.getConfig().getInt("Items.Weapons.Swords.Diamond.cost"));
+        // Create Archery
+        createPurchaseItem(Material.BOW,weaponMenu,this.getConfig().getInt("Items.Weapons.Archery.Bow.slot"),1,this.getConfig().getInt("Items.Weapons.Archery.Bow.cost"));
+        createPurchaseItem(Material.BOW,weaponMenu,this.getConfig().getInt("Items.Weapons.Archery.Arrow.slot"),this.getConfig().getInt("Items.Weapons.Archery.Arrow.amount"),this.getConfig().getInt("Items.Weapons.Archery.Arrow.cost"));
     }
 
     /**
