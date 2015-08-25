@@ -26,7 +26,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * they want with cash in a nice clean GUI
  *
  * @author Systemx86 (Bananna)
- * @version 1.0.3
+ * @version 1.0.4
  */
 public class CBShop extends JavaPlugin implements Listener {
 
@@ -279,16 +279,57 @@ public class CBShop extends JavaPlugin implements Listener {
      *
      * @param p The player selling/buying items
      * @param item The Item that is being sold/bought
-     * @param amount The Amount of that item being sold/bought
-     * @param cost The cost of x amount of item.
+     * @param itemPath The Path to the chosen item's properties(in Config.yml)
      * @param leftRight Wheather the player left-clicked or right-clicked the
      * item.
      */
-    public void itemTransaction(Player p, Material item, int amount, int cost, ClickType leftRight) {
-        double playerBalance = econ.getBalance(p);
+    public void itemTransaction(Player p, ItemStack item, String itemPath, ClickType leftRight) {
+        double playerBalance = econ.getBalance(p); // The players current balance
+        Inventory pInv = p.getInventory(); // The players Inventory
+        int amount = 0; // Initialize amount var.
+        int cost = this.getConfig().getInt(itemPath + ".cost"); // The cost of item
+        int resaleV = this.getConfig().getInt(itemPath + ".resell"); // The Resell cost of item.
 
-        if (playerBalance >= cost) {
+        if (itemPath.contains("Armor") || itemPath.contains("Weapons") || itemPath.contains("Tools")) {
+            if (!itemPath.contains("Arrow")) {
+                amount = 1;
+            } else {
+                amount = this.getConfig().getInt(itemPath + ".amount");
+            }
+        } else {
+            this.getConfig().getInt(itemPath + ".amount");
+        }
 
+        if (leftRight.isLeftClick()) { // Buy Item
+            item.setAmount(amount);
+            if (playerBalance >= cost) {
+                econ.withdrawPlayer(p, cost);
+                pInv.addItem(item);
+                p.sendMessage(MSG_PREFIX + "Purchased " + item.getItemMeta().getDisplayName() + " for " + cost + " " + econ.currencyNamePlural());
+            } else {
+                p.sendMessage(MSG_PREFIX + "Sorry, you have insufficiant funds.");
+                p.sendMessage(MSG_PREFIX + playerBalance);
+            }
+        } else if (leftRight.isRightClick()) { // Sell Item
+            boolean foundStack = false;
+            if (pInv.contains(item)) {
+                for (ItemStack is : pInv) {
+                    if (is.getType() == item.getType()) {
+                        if (is.getAmount() > amount) {
+                            is.setAmount(is.getAmount() - amount);
+                            foundStack = true;
+                            econ.depositPlayer(p, resaleV);
+                        } else {
+                            pInv.remove(is);
+                            econ.depositPlayer(p, resaleV); // Logic problem here. //
+                        }
+                    }
+                }
+            } else {
+                p.sendMessage(ChatColor.RED + "You don't have any of that item to sell");
+            }
+        } else {
+            p.sendMessage(ChatColor.RED + "Unsupported Action (" + leftRight.name() + ").");
         }
 
     }
