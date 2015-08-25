@@ -26,7 +26,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * they want with cash in a nice clean GUI
  *
  * @author Systemx86 (Bananna)
- * @version 1.0.2
+ * @version 1.0.3
  */
 public class CBShop extends JavaPlugin implements Listener {
 
@@ -271,10 +271,26 @@ public class CBShop extends JavaPlugin implements Listener {
         createMenuItem(Material.ENDER_CHEST, oreMenu, 26, ChatColor.BLUE + "Exit", ChatColor.GRAY + "Click to exit to the main menu.");
     }
 
-    public void itemTransaction(Material item, int amount, int cost, ClickType leftRight) {
-        
-        // TODO
-        
+    /**
+     *
+     * This method decides how much to charge the player for 'item' and allows
+     * players to also sell to the server for resale price if they right click
+     * the item.
+     *
+     * @param p The player selling/buying items
+     * @param item The Item that is being sold/bought
+     * @param amount The Amount of that item being sold/bought
+     * @param cost The cost of x amount of item.
+     * @param leftRight Wheather the player left-clicked or right-clicked the
+     * item.
+     */
+    public void itemTransaction(Player p, Material item, int amount, int cost, ClickType leftRight) {
+        double playerBalance = econ.getBalance(p);
+
+        if (playerBalance >= cost) {
+
+        }
+
     }
 
     /**
