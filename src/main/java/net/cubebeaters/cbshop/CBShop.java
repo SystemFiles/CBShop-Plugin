@@ -25,7 +25,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * they want with cash in a nice clean GUI
  *
  * @author Systemx86 (Bananna)
- * @version 1.0.1
+ * @version 1.0.2
  */
 public class CBShop extends JavaPlugin implements Listener {
 
@@ -240,7 +240,19 @@ public class CBShop extends JavaPlugin implements Listener {
      * Creates all the contents of the Ore Shop
      */
     public void createOreMenu() {
-        // TODO
+        // Create Ore Items
+        createPurchaseItem(Material.COAL,oreMenu,this.getConfig().getInt("Items.Mining.Ore.Coal.slot"),this.getConfig().getInt("Items.Mining.Ore.Coal.amount"),this.getConfig().getInt("Items.Mining.Ore.Coal.cost"));
+        createPurchaseItem(Material.IRON_ORE,oreMenu,this.getConfig().getInt("Items.Mining.Ore.Iron.slot"),this.getConfig().getInt("Items.Mining.Ore.Iron.amount"),this.getConfig().getInt("Items.Mining.Ore.Iron.cost"));
+        createPurchaseItem(Material.GOLD_ORE,oreMenu,this.getConfig().getInt("Items.Mining.Ore.Gold.slot"),this.getConfig().getInt("Items.Mining.Ore.Gold.amount"),this.getConfig().getInt("Items.Mining.Ore.Gold.cost"));
+        createPurchaseItem(Material.DIAMOND,oreMenu,this.getConfig().getInt("Items.Mining.Ore.Diamond.slot"),this.getConfig().getInt("Items.Mining.Ore.Diamond.amount"),this.getConfig().getInt("Items.Mining.Ore.Diamond.cost"));
+        createPurchaseItem(Material.REDSTONE,oreMenu,this.getConfig().getInt("Items.Mining.Ore.Redstone.slot"),this.getConfig().getInt("Items.Mining.Ore.Redstone.amount"),this.getConfig().getInt("Items.Mining.Ore.Redstone.cost"));
+        createPurchaseItem(Material.EMERALD,oreMenu,this.getConfig().getInt("Items.Mining.Ore.Emerald.slot"),this.getConfig().getInt("Items.Mining.Ore.Emerald.amount"),this.getConfig().getInt("Items.Mining.Ore.Emerald.cost"));
+        // Create Ingot Items
+        createPurchaseItem(Material.LAPIS_ORE,oreMenu,this.getConfig().getInt("Items.Mining.Ingots.lapis.slot"),this.getConfig().getInt("Items.Mining.Ingots.lapis.amount"),this.getConfig().getInt("Items.Mining.Ingots.lapis.cost"));
+        createPurchaseItem(Material.IRON_INGOT,oreMenu,this.getConfig().getInt("Items.Mining.Ingots.Iron.slot"),this.getConfig().getInt("Items.Mining.Ingots.Iron.amount"),this.getConfig().getInt("Items.Mining.Ingots.Iron.cost"));
+        createPurchaseItem(Material.GOLD_INGOT,oreMenu,this.getConfig().getInt("Items.Mining.Ingots.Gold.slot"),this.getConfig().getInt("Items.Mining.Ingots.Gold.amount"),this.getConfig().getInt("Items.Mining.Ingots.Gold.cost"));
+        createPurchaseItem(Material.DIAMOND,oreMenu,this.getConfig().getInt("Items.Mining.Ingots.Diamond.slot"),this.getConfig().getInt("Items.Mining.Ingots.Diamond.amount"),this.getConfig().getInt("Items.Mining.Ingots.Diamond.cost"));
+        createPurchaseItem(Material.EMERALD,oreMenu,this.getConfig().getInt("Items.Mining.Ingots.Emerald.slot"),this.getConfig().getInt("Items.Mining.Ingots.Emerald.amount"),this.getConfig().getInt("Items.Mining.Ingots.Emerald.cost"));
     }
 
     /**
