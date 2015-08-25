@@ -25,7 +25,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * they want with cash in a nice clean GUI
  *
  * @author Systemx86 (Bananna)
- * @version 1.0
+ * @version 1.0.1
  */
 public class CBShop extends JavaPlugin implements Listener {
 
@@ -216,7 +216,24 @@ public class CBShop extends JavaPlugin implements Listener {
      * Creates all the contents of the Tools Shop
      */
     public void createToolsMenu() {
-        // TODO
+        // Create Pickaxes'
+        createPurchaseItem(Material.WOOD_PICKAXE,toolMenu,this.getConfig().getInt("Items.Tools.Pickaxe.Wood.slot"),1,this.getConfig().getInt("Items.Tools.Pickaxe.Wood.cost"));
+        createPurchaseItem(Material.STONE_PICKAXE,toolMenu,this.getConfig().getInt("Items.Tools.Pickaxe.Stone.slot"),1,this.getConfig().getInt("Items.Tools.Pickaxe.Stone.cost"));
+        createPurchaseItem(Material.IRON_PICKAXE,toolMenu,this.getConfig().getInt("Items.Tools.Pickaxe.Iron.slot"),1,this.getConfig().getInt("Items.Tools.Pickaxe.Iron.cost"));
+        createPurchaseItem(Material.GOLD_PICKAXE,toolMenu,this.getConfig().getInt("Items.Tools.Pickaxe.Gold.slot"),1,this.getConfig().getInt("Items.Tools.Pickaxe.Gold.cost"));
+        createPurchaseItem(Material.DIAMOND_PICKAXE,toolMenu,this.getConfig().getInt("Items.Tools.Pickaxe.Diamond.slot"),1,this.getConfig().getInt("Items.Tools.Pickaxe.Diamond.cost"));
+        // Create Axes'
+        createPurchaseItem(Material.WOOD_AXE,toolMenu,this.getConfig().getInt("Items.Tools.Axe.Wood.slot"),1,this.getConfig().getInt("Items.Tools.Axe.Wood.cost"));
+        createPurchaseItem(Material.STONE_AXE,toolMenu,this.getConfig().getInt("Items.Tools.Axe.Stone.slot"),1,this.getConfig().getInt("Items.Tools.Axe.Stone.cost"));
+        createPurchaseItem(Material.IRON_AXE,toolMenu,this.getConfig().getInt("Items.Tools.Axe.Iron.slot"),1,this.getConfig().getInt("Items.Tools.Axe.Iron.cost"));
+        createPurchaseItem(Material.GOLD_AXE,toolMenu,this.getConfig().getInt("Items.Tools.Axe.Gold.slot"),1,this.getConfig().getInt("Items.Tools.Axe.Gold.cost"));
+        createPurchaseItem(Material.DIAMOND_AXE,toolMenu,this.getConfig().getInt("Items.Tools.Axe.Diamond.slot"),1,this.getConfig().getInt("Items.Tools.Axe.Diamond.cost"));
+        // Create Spades
+        createPurchaseItem(Material.WOOD_SPADE,toolMenu,this.getConfig().getInt("Items.Tools.Shovel.Wood.slot"),1,this.getConfig().getInt("Items.Tools.Shovel.Wood.cost"));
+        createPurchaseItem(Material.STONE_SPADE,toolMenu,this.getConfig().getInt("Items.Tools.Shovel.Stone.slot"),1,this.getConfig().getInt("Items.Tools.Shovel.Stone.cost"));
+        createPurchaseItem(Material.IRON_SPADE,toolMenu,this.getConfig().getInt("Items.Tools.Shovel.Iron.slot"),1,this.getConfig().getInt("Items.Tools.Shovel.Iron.cost"));
+        createPurchaseItem(Material.GOLD_SPADE,toolMenu,this.getConfig().getInt("Items.Tools.Shovel.Gold.slot"),1,this.getConfig().getInt("Items.Tools.Shovel.Gold.cost"));
+        createPurchaseItem(Material.DIAMOND_SPADE,toolMenu,this.getConfig().getInt("Items.Tools.Shovel.Diamond.slot"),1,this.getConfig().getInt("Items.Tools.Shovel.Diamond.cost"));
     }
 
     /**
