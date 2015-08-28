@@ -1,6 +1,6 @@
 name: CBShop
 main: net.cubebeaters.CBShop
-version: 1.0.4
+version: 1.0.6
 author: Systemx86
 depend: [Vault]
 commands:

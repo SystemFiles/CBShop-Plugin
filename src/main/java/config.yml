@@ -262,3 +262,59 @@ Items:
                 amount: 16
                 cost: 2200
                 resell: 1100
+    Farming:
+        Seeds:
+            Wheat:
+                slot: 0
+                amount: 16
+                cost: 200
+                resell: 100
+            Melon:
+                slot: 1
+                amount: 16
+                cost: 400
+                resell: 200
+            Pumpkin:
+                slot: 2
+                amount: 16
+                cost: 400
+                resell: 200
+        Beans:
+            Cocoa:
+                slot: 3
+                amount: 16
+                cost: 600
+                resell: 300
+        Plants:
+            Carrot:
+                slot: 4
+                amount: 16
+                cost: 500
+                resell: 250
+            Potato:
+                slot: 5
+                amount: 16
+                cost: 500
+                resell: 250
+        Blocks:
+            Melon:
+                slot: 6
+                amount: 16
+                cost: 1600
+                resell: 800
+            Pumpkin:
+                slot: 7
+                amount: 16
+                cost: 1600
+                resell: 800
+            Cactus:
+                slot: 8
+                amount: 16
+                cost: 700
+                resell: 350
+            SugarCane:
+                slot: 9
+                amount: 16
+                cost: 600
+                resell: 300
+            

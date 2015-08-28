@@ -26,7 +26,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * they want with cash in a nice clean GUI
  *
  * @author Systemx86 (Bananna)
- * @version 1.0.4
+ * @version 1.0.6
  */
 public class CBShop extends JavaPlugin implements Listener {
 
@@ -39,6 +39,7 @@ public class CBShop extends JavaPlugin implements Listener {
     private final Inventory weaponMenu = Bukkit.createInventory(null, 27, MSG_PREFIX + " - Weapons");
     private final Inventory toolMenu = Bukkit.createInventory(null, 27, MSG_PREFIX + " - Tools");
     private final Inventory oreMenu = Bukkit.createInventory(null, 27, MSG_PREFIX + " - Mining Produce");
+    private final Inventory farmMenu = Bukkit.createInventory(null, 27, MSG_PREFIX + " - Farming Produce");
 
     /**
      * Initializes the plugin.
@@ -111,6 +112,10 @@ public class CBShop extends JavaPlugin implements Listener {
                         createOreMenu();
                         p.openInventory(oreMenu);
                         break;
+                    case WHEAT:
+                        event.setCancelled(true);
+                        createFarmMenu();
+                        p.openInventory(farmMenu);
                 }
             }
         } else if (inv.getName().equals(armorMenu.getName())) {
@@ -166,6 +171,8 @@ public class CBShop extends JavaPlugin implements Listener {
         createMenuItem(Material.GOLD_SPADE, mainMenu, 2, ChatColor.GOLD + "Tools Shop", ChatColor.GREEN + "Click to open the Tools Shop");
         // Create Ore menu Item
         createMenuItem(Material.COAL, mainMenu, 3, ChatColor.GOLD + "Ore Shop", ChatColor.GREEN + "Click to open the Ore Shop");
+        // Create Farm menu Item
+        createMenuItem(Material.WHEAT, mainMenu, 4, ChatColor.GOLD + "Farm Shop", ChatColor.GREEN + "Click to open the Farm Shop");
         // Create Exit Button
         createMenuItem(Material.ENDER_CHEST, mainMenu, 17, ChatColor.BLUE + "Exit Shop", ChatColor.GREEN + "Click to exit the CBShop");
     }
@@ -270,6 +277,28 @@ public class CBShop extends JavaPlugin implements Listener {
         // Create Exit Button
         createMenuItem(Material.ENDER_CHEST, oreMenu, 26, ChatColor.BLUE + "Exit", ChatColor.GRAY + "Click to exit to the main menu.");
     }
+    
+    /**
+     * Creates all the contents of the Farm Shop
+     */
+    public void createFarmMenu(){
+        // Create Seed Items
+        createPurchaseItem(Material.SEEDS, farmMenu, this.getConfig().getInt("Items.Farming.Seeds.Wheat.slot"), this.getConfig().getInt("Items.Farming.Seeds.Wheat.amount"), this.getConfig().getInt("Items.Farming.Seeds.Wheat.cost"));
+        createPurchaseItem(Material.MELON_SEEDS, farmMenu, this.getConfig().getInt("Items.Farming.Seeds.Melon.slot"), this.getConfig().getInt("Items.Farming.Seeds.Melon.amount"), this.getConfig().getInt("Items.Farming.Seeds.Melon.cost"));
+        createPurchaseItem(Material.PUMPKIN_SEEDS, farmMenu, this.getConfig().getInt("Items.Farming.Seeds.Pumpkin.slot"), this.getConfig().getInt("Items.Farming.Seeds.Pumpkin.amount"), this.getConfig().getInt("Items.Farming.Seeds.Pumpkin.cost"));
+        // Create Bean Items
+        createPurchaseItem(Material.COCOA, farmMenu, this.getConfig().getInt("Items.Farming.Beans.Cocoa.slot"), this.getConfig().getInt("Items.Farming.Beans.Cocoa.amount"), this.getConfig().getInt("Items.Farming.Beans.Cocoa.cost"));
+        // Create Plant Items
+        createPurchaseItem(Material.CARROT, farmMenu, this.getConfig().getInt("Items.Farming.Plants.Carrot.slot"), this.getConfig().getInt("Items.Farming.Plants.Carrot.amount"), this.getConfig().getInt("Items.Farming.Plants.Carrot.cost"));
+        createPurchaseItem(Material.POTATO, farmMenu, this.getConfig().getInt("Items.Farming.Plants.Potato.slot"), this.getConfig().getInt("Items.Farming.Plants.Potato.amount"), this.getConfig().getInt("Items.Farming.Plants.Potato.cost"));
+        // Create Block Items
+        createPurchaseItem(Material.MELON_BLOCK, farmMenu, this.getConfig().getInt("Items.Farming.Blocks.Melon.slot"), this.getConfig().getInt("Items.Farming.Blocks.Melon.amount"), this.getConfig().getInt("Items.Farming.Blocks.Melon.cost"));
+        createPurchaseItem(Material.PUMPKIN,farmMenu, this.getConfig().getInt("Items.Farming.Blocks.Pumpkin.slot"), this.getConfig().getInt("Items.Farming.Blocks.Pumpkin.amount"), this.getConfig().getInt("Items.Farming.Blocks.Pumpkin.cost"));
+        createPurchaseItem(Material.CACTUS, farmMenu, this.getConfig().getInt("Items.Farming.Blocks.Cactus.slot"), this.getConfig().getInt("Items.Farming.Blocks.Cactus.amount"), this.getConfig().getInt("Items.Farming.Blocks.Cactus.cost"));
+        createPurchaseItem(Material.SUGAR_CANE, farmMenu, this.getConfig().getInt("Items.Farming.Blocks.SugarCane.slot"), this.getConfig().getInt("Items.Farming.Blocks.SugarCane.amount"), this.getConfig().getInt("Items.Farming.Blocks.SugarCane.cost"));
+        // Create Cancel Button
+        createMenuItem(Material.ENDER_CHEST, farmMenu, 17, ChatColor.BLUE + "Exit Shop", ChatColor.GREEN + "Click to exit the CBShop");
+    }
 
     /**
      *
@@ -280,7 +309,7 @@ public class CBShop extends JavaPlugin implements Listener {
      * @param p The player selling/buying items
      * @param item The Item that is being sold/bought
      * @param itemPath The Path to the chosen item's properties(in Config.yml)
-     * @param leftRight Wheather the player left-clicked or right-clicked the
+     * @param leftRight Whether the player left-clicked or right-clicked the
      * item.
      */
     public void itemTransaction(Player p, ItemStack item, String itemPath, ClickType leftRight) {
@@ -307,7 +336,7 @@ public class CBShop extends JavaPlugin implements Listener {
                 pInv.addItem(item);
                 p.sendMessage(MSG_PREFIX + "Purchased " + item.getItemMeta().getDisplayName() + " for " + cost + " " + econ.currencyNamePlural());
             } else {
-                p.sendMessage(MSG_PREFIX + "Sorry, you have insufficiant funds.");
+                p.sendMessage(MSG_PREFIX + "Sorry, you have insufficient funds.");
                 p.sendMessage(MSG_PREFIX + playerBalance);
             }
         } else if (leftRight.isRightClick()) { // Sell Item
