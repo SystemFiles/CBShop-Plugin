@@ -1,0 +1,320 @@
+                  # Configuration File for CBShop #
+
+##############################################################################
+#                                                                            #
+#   This plugin was developed for specific use on the CubeBeaters server by: #                             #
+#     - Systemx86                                                            #
+#   If you are experiencing some customization issues please                 #
+#   let me know what you would like to be customizable, so that I can        #
+#   add it to this plugin allowing more people to use it for their servers.  #
+#                                                                            #
+##############################################################################
+
+
+###############################
+#                             #
+#                             #
+#     ITEMS CONFIGURATION     #
+#                             #
+#                             #
+###############################
+
+# ALL INVENTORY INDEXES START AT '0' SO IF YOU WANT SOMETHING IN THE FIRST SLOT OF THE INVENTORY 
+# TYPE '0' INTO THE "slot" SETTING.
+Items:
+    Armor:
+        Leather:
+            head:
+                slot: 0
+                cost: 200
+                resell: 100
+            chest:
+                slot: 1
+                cost: 400
+                resell: 200
+            legs:
+                slot: 2
+                cost: 600
+                resell: 300
+            feet:
+                slot: 3
+                cost: 300
+                resell: 150
+        Chain:
+            head:
+                slot: 5
+                cost: 1000
+                resell: 500
+            chest:
+                slot: 6
+                cost: 1500
+                resell: 750
+            legs:
+                slot: 7
+                cost: 700
+                resell: 350
+            feet:
+                slot: 8
+                cost: 400
+                resell: 200
+        Iron:
+            head:
+                slot: 9
+                cost: 800
+                resell: 400
+            chest:
+                slot: 10
+                cost: 1200
+                resell: 600
+            legs:
+                slot: 11
+                cost: 600
+                resell: 300
+            feet:
+                slot: 12
+                cost: 300
+                resell: 150
+        Gold:
+            head:
+                slot: 14
+                cost: 2500
+                resell: 1250
+            chest:
+                slot: 15
+                cost: 4000
+                resell: 2000
+            legs:
+                slot: 16
+                cost: 1800
+                resell: 900
+            feet:
+                slot: 17
+                cost: 1200
+                resell: 600
+        Diamond:
+            head:
+                slot: 18
+                cost: 5000
+                resell: 2500
+            chest:
+                slot: 19
+                cost: 8500
+                resell: 4250
+            legs:
+                slot: 20
+                cost: 4250
+                resell: 2125
+            feet:
+                slot: 21
+                cost: 3800
+                resell: 1900
+    Weapons:
+        Swords:
+            Wood:
+                slot: 0
+                cost: 50
+                resell: 25
+            Stone:
+                slot: 1
+                cost: 100
+                resell: 50
+            Iron:
+                slot: 2
+                cost: 400
+                resell: 200
+            Gold:
+                slot: 3
+                cost: 800
+                resell: 400
+            Diamond:
+                slot: 4
+                cost: 1700
+                resell: 850
+        Archery:
+            Bow:
+                slot: 9
+                cost: 1000
+                resell: 500
+            Arrow:
+                slot: 10
+                amount: 64
+                cost: 1000
+                resell: 500
+    Tools:
+        Pickaxe:
+            Wood:
+                slot: 0
+                cost: 50
+                resell: 25
+            Stone:
+                slot: 1
+                cost: 100
+                resell: 50
+            Iron:
+                slot: 2
+                cost: 600
+                resell: 300
+            Gold:
+                slot: 3
+                cost: 1000
+                resell: 500
+            Diamond:
+                slot: 4
+                cost: 2200
+                resell: 1100
+        Axe:
+            Wood:
+                slot: 9
+                cost: 50
+                resell: 25
+            Stone:
+                slot: 10
+                cost: 100
+                resell: 50
+            Iron:
+                slot: 11
+                cost: 600
+                resell: 300
+            Gold:
+                slot: 12
+                cost: 1200
+                resell: 600
+            Diamond:
+                slot: 13
+                cost: 1500
+                resell: 600
+        Shovel:
+            Wood:
+                slot: 18
+                cost: 50
+                resell: 25
+            Stone:
+                slot: 19
+                cost: 100
+                resell: 50
+            Iron:
+                slot: 20
+                cost: 600
+                resell: 300
+            Gold:
+                slot: 21
+                cost: 1200
+                resell: 600
+            Diamond:
+                slot: 22
+                cost: 1400
+                resell: 700
+    Mining:
+        Ore:
+            Coal:
+                slot: 0
+                amount: 16
+                cost: 250
+                resell: 125
+            Iron:
+                slot: 1
+                amount: 16
+                cost: 500
+                resell: 250
+            Gold:
+                slot: 2
+                amount: 16
+                cost: 600
+                resell: 300
+            Diamond:
+                slot: 3
+                amount: 16
+                cost: 800
+                resell: 400
+            Redstone:
+                slot: 4
+                amount: 16
+                cost: 100
+                resell: 50
+            Emerald:
+                slot: 5
+                amount: 16
+                cost: 1200
+                resell: 600
+        Ingots:
+            Lapis:
+                slot: 9
+                amount: 16
+                cost: 250
+                resell: 125
+            Iron:
+                slot: 10
+                amount: 16
+                cost: 800
+                resell: 400
+            Gold:
+                slot: 11
+                amount: 16
+                cost: 1200
+                resell: 600
+            Diamond:
+                slot: 12
+                amount: 16
+                cost: 1600
+                resell: 800
+            Emerald:
+                slot: 13
+                amount: 16
+                cost: 2200
+                resell: 1100
+    Farming:
+        Seeds:
+            Wheat:
+                slot: 0
+                amount: 16
+                cost: 200
+                resell: 100
+            Melon:
+                slot: 1
+                amount: 16
+                cost: 400
+                resell: 200
+            Pumpkin:
+                slot: 2
+                amount: 16
+                cost: 400
+                resell: 200
+        Beans:
+            Cocoa:
+                slot: 3
+                amount: 16
+                cost: 600
+                resell: 300
+        Plants:
+            Carrot:
+                slot: 4
+                amount: 16
+                cost: 500
+                resell: 250
+            Potato:
+                slot: 5
+                amount: 16
+                cost: 500
+                resell: 250
+        Blocks:
+            Melon:
+                slot: 6
+                amount: 16
+                cost: 1600
+                resell: 800
+            Pumpkin:
+                slot: 7
+                amount: 16
+                cost: 1600
+                resell: 800
+            Cactus:
+                slot: 8
+                amount: 16
+                cost: 700
+                resell: 350
+            SugarCane:
+                slot: 9
+                amount: 16
+                cost: 600
+                resell: 300
+            

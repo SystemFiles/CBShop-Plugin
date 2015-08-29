@@ -1,5 +1,6 @@
 package net.cubebeaters.cbshop;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,6 +20,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.inventivetalent.update.spigot.SpigotUpdater;
 
 /**
  *
@@ -26,10 +28,10 @@ import org.bukkit.plugin.java.JavaPlugin;
  * they want with cash in a nice clean GUI
  *
  * @author Systemx86 (Bananna)
- * @version 1.0.6
+ * @version 1.0.6.1
  */
 public class CBShop extends JavaPlugin implements Listener {
-
+    
     private String MSG_PREFIX = ChatColor.BLUE + "[" + ChatColor.GOLD + "Shop" + ChatColor.BLUE + "] " + ChatColor.WHITE;
     private Economy econ;
 
@@ -50,7 +52,7 @@ public class CBShop extends JavaPlugin implements Listener {
         this.saveDefaultConfig();
         Bukkit.getServer().getPluginManager().registerEvents(this, this);
         getLogger().info("Events Registered.");
-
+        
         getLogger().info("Setting up Economy Hook.");
         if (!setupEconomy()) {
             getLogger().info(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
@@ -58,10 +60,17 @@ public class CBShop extends JavaPlugin implements Listener {
         } else {
             getLogger().info("Economy Enabled!");
         }
-
+        
         getLogger().info("Setting custom prefix...");
         MSG_PREFIX = net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', this.getConfig().getString("Messages.CommandPrefix").replace("'", "").replace("'", ""));
         getLogger().info("Set. Done.");
+        
+        try { // This will only work if plugin is on spigot.
+            getLogger().log(Level.INFO, "{0}Checking for new versions of CBShop", MSG_PREFIX);
+            SpigotUpdater su = new SpigotUpdater(this, 1337);
+        } catch (IOException ioe) {
+            getLogger().log(Level.INFO, "{0}\n\nIOException was thrown while attempting to load SpigotUpdater", ioe.getMessage());
+        }
     }
 
     /**
@@ -88,7 +97,7 @@ public class CBShop extends JavaPlugin implements Listener {
         Inventory inv = event.getInventory(); // The Inventory that was used.
         ItemStack clicked = event.getCurrentItem(); // The item that was clicked.
         ClickType clickType = event.getClick();
-
+        
         if (inv.getName().equals(mainMenu.getName())) {
             if (null != clicked.getType()) {
                 switch (clicked.getType()) {
@@ -140,7 +149,7 @@ public class CBShop extends JavaPlugin implements Listener {
         econ = rsp.getProvider();
         return econ != null;
     }
-
+    
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender instanceof Player) {
@@ -277,11 +286,11 @@ public class CBShop extends JavaPlugin implements Listener {
         // Create Exit Button
         createMenuItem(Material.ENDER_CHEST, oreMenu, 26, ChatColor.BLUE + "Exit", ChatColor.GRAY + "Click to exit to the main menu.");
     }
-    
+
     /**
      * Creates all the contents of the Farm Shop
      */
-    public void createFarmMenu(){
+    public void createFarmMenu() {
         // Create Seed Items
         createPurchaseItem(Material.SEEDS, farmMenu, this.getConfig().getInt("Items.Farming.Seeds.Wheat.slot"), this.getConfig().getInt("Items.Farming.Seeds.Wheat.amount"), this.getConfig().getInt("Items.Farming.Seeds.Wheat.cost"));
         createPurchaseItem(Material.MELON_SEEDS, farmMenu, this.getConfig().getInt("Items.Farming.Seeds.Melon.slot"), this.getConfig().getInt("Items.Farming.Seeds.Melon.amount"), this.getConfig().getInt("Items.Farming.Seeds.Melon.cost"));
@@ -293,7 +302,7 @@ public class CBShop extends JavaPlugin implements Listener {
         createPurchaseItem(Material.POTATO, farmMenu, this.getConfig().getInt("Items.Farming.Plants.Potato.slot"), this.getConfig().getInt("Items.Farming.Plants.Potato.amount"), this.getConfig().getInt("Items.Farming.Plants.Potato.cost"));
         // Create Block Items
         createPurchaseItem(Material.MELON_BLOCK, farmMenu, this.getConfig().getInt("Items.Farming.Blocks.Melon.slot"), this.getConfig().getInt("Items.Farming.Blocks.Melon.amount"), this.getConfig().getInt("Items.Farming.Blocks.Melon.cost"));
-        createPurchaseItem(Material.PUMPKIN,farmMenu, this.getConfig().getInt("Items.Farming.Blocks.Pumpkin.slot"), this.getConfig().getInt("Items.Farming.Blocks.Pumpkin.amount"), this.getConfig().getInt("Items.Farming.Blocks.Pumpkin.cost"));
+        createPurchaseItem(Material.PUMPKIN, farmMenu, this.getConfig().getInt("Items.Farming.Blocks.Pumpkin.slot"), this.getConfig().getInt("Items.Farming.Blocks.Pumpkin.amount"), this.getConfig().getInt("Items.Farming.Blocks.Pumpkin.cost"));
         createPurchaseItem(Material.CACTUS, farmMenu, this.getConfig().getInt("Items.Farming.Blocks.Cactus.slot"), this.getConfig().getInt("Items.Farming.Blocks.Cactus.amount"), this.getConfig().getInt("Items.Farming.Blocks.Cactus.cost"));
         createPurchaseItem(Material.SUGAR_CANE, farmMenu, this.getConfig().getInt("Items.Farming.Blocks.SugarCane.slot"), this.getConfig().getInt("Items.Farming.Blocks.SugarCane.amount"), this.getConfig().getInt("Items.Farming.Blocks.SugarCane.cost"));
         // Create Cancel Button
@@ -328,7 +337,7 @@ public class CBShop extends JavaPlugin implements Listener {
         } else {
             this.getConfig().getInt(itemPath + ".amount");
         }
-
+        
         if (leftRight.isLeftClick()) { // Buy Item
             item.setAmount(amount);
             if (playerBalance >= cost) {
@@ -360,7 +369,7 @@ public class CBShop extends JavaPlugin implements Listener {
         } else {
             p.sendMessage(ChatColor.RED + "Unsupported Action (" + leftRight.name() + ").");
         }
-
+        
     }
 
     /**
@@ -375,7 +384,7 @@ public class CBShop extends JavaPlugin implements Listener {
      */
     public void createPurchaseItem(Material material, Inventory inv, int slot, int amount, int cost) {
         String lore;
-
+        
         ItemStack item = new ItemStack(material);
         item.setAmount(amount);
         ItemMeta meta = item.getItemMeta();
@@ -388,7 +397,7 @@ public class CBShop extends JavaPlugin implements Listener {
             getLogger().log(Level.INFO, "Nothing entered for the lore of {0}.", meta.getDisplayName());
         }
         item.setItemMeta(meta);
-
+        
         inv.setItem(slot, item);
     }
 
@@ -410,8 +419,8 @@ public class CBShop extends JavaPlugin implements Listener {
         Lore.add(lore);
         meta.setLore(Lore);
         item.setItemMeta(meta);
-
+        
         inv.setItem(Slot, item);
     }
-
+    
 }
