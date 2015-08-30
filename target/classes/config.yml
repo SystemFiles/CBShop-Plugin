@@ -10,6 +10,10 @@
 #                                                                            #
 ##############################################################################
 
+## Custom Messages ##
+Messages:
+    CommandPrefix: '&6[&9SHOP&6]&f '
+
 ## SPIGOT RESOURCE ID FOR PLUGIN UPDATE CHECKER ##
 Resource-ID: 1521
 
