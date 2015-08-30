@@ -10,6 +10,8 @@
 #                                                                            #
 ##############################################################################
 
+## SPIGOT RESOURCE ID FOR PLUGIN UPDATE CHECKER ##
+Resource-ID: 1521
 
 ###############################
 #                             #
@@ -317,4 +319,6 @@ Items:
                 amount: 16
                 cost: 600
                 resell: 300
+
+## YOU DID IT! YOU REACHED THE END OF THE CONFIG ##
             

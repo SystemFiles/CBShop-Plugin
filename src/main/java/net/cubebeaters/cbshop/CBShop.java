@@ -28,11 +28,12 @@ import org.inventivetalent.update.spigot.SpigotUpdater;
  * they want with cash in a nice clean GUI
  *
  * @author Systemx86 (Bananna)
- * @version 1.0.6.1
+ * @version 1.1.0
  */
 public class CBShop extends JavaPlugin implements Listener {
-    
+
     private String MSG_PREFIX = ChatColor.BLUE + "[" + ChatColor.GOLD + "Shop" + ChatColor.BLUE + "] " + ChatColor.WHITE;
+    private int resourceID;
     private Economy econ;
 
     // Below Create all Inventory Menu's
@@ -50,9 +51,10 @@ public class CBShop extends JavaPlugin implements Listener {
     public void onEnable() {
         getLogger().info("Creating/Loading Configuration.");
         this.saveDefaultConfig();
+        resourceID = this.getConfig().getInt("Resource-ID");
         Bukkit.getServer().getPluginManager().registerEvents(this, this);
         getLogger().info("Events Registered.");
-        
+
         getLogger().info("Setting up Economy Hook.");
         if (!setupEconomy()) {
             getLogger().info(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
@@ -60,14 +62,15 @@ public class CBShop extends JavaPlugin implements Listener {
         } else {
             getLogger().info("Economy Enabled!");
         }
-        
+
         getLogger().info("Setting custom prefix...");
         MSG_PREFIX = net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', this.getConfig().getString("Messages.CommandPrefix").replace("'", "").replace("'", ""));
         getLogger().info("Set. Done.");
-        
+
         try { // This will only work if plugin is on spigot.
             getLogger().log(Level.INFO, "{0}Checking for new versions of CBShop", MSG_PREFIX);
-            SpigotUpdater su = new SpigotUpdater(this, 1337);
+            SpigotUpdater su = new SpigotUpdater(this, resourceID);
+            getLogger().log(Level.INFO, "{0}Done", ChatColor.GREEN);
         } catch (IOException ioe) {
             getLogger().log(Level.INFO, "{0}\n\nIOException was thrown while attempting to load SpigotUpdater", ioe.getMessage());
         }
@@ -97,7 +100,7 @@ public class CBShop extends JavaPlugin implements Listener {
         Inventory inv = event.getInventory(); // The Inventory that was used.
         ItemStack clicked = event.getCurrentItem(); // The item that was clicked.
         ClickType clickType = event.getClick();
-        
+
         if (inv.getName().equals(mainMenu.getName())) {
             if (null != clicked.getType()) {
                 switch (clicked.getType()) {
@@ -128,7 +131,227 @@ public class CBShop extends JavaPlugin implements Listener {
                 }
             }
         } else if (inv.getName().equals(armorMenu.getName())) {
-            // Check which armor peice was clicked. Then Run appropriate method with appropriate perameters.
+            if (null != clicked.getType()) {
+                switch (clicked.getType()) {
+                    case LEATHER_HELMET:
+                        itemTransaction(p, clicked, "Items.Armor.Leather.head", clickType);
+                        break;
+                    case LEATHER_CHESTPLATE:
+                        itemTransaction(p, clicked, "Items.Armor.Leather.chest", clickType);
+                        break;
+                    case LEATHER_LEGGINGS:
+                        itemTransaction(p, clicked, "Items.Armor.Leather.legs", clickType);
+                        break;
+                    case LEATHER_BOOTS:
+                        itemTransaction(p, clicked, "Items.Armor.Leather.feet", clickType);
+                        break;
+                    case CHAINMAIL_HELMET:
+                        itemTransaction(p, clicked, "Items.Armor.Chain.head", clickType);
+                        break;
+                    case CHAINMAIL_CHESTPLATE:
+                        itemTransaction(p, clicked, "Items.Armor.Chain.chest", clickType);
+                        break;
+                    case CHAINMAIL_LEGGINGS:
+                        itemTransaction(p, clicked, "Items.Armor.Chain.legs", clickType);
+                        break;
+                    case CHAINMAIL_BOOTS:
+                        itemTransaction(p, clicked, "Items.Armor.Chain.feet", clickType);
+                        break;
+                    case IRON_HELMET:
+                        itemTransaction(p, clicked, "Items.Armor.Iron.head", clickType);
+                        break;
+                    case IRON_CHESTPLATE:
+                        itemTransaction(p, clicked, "Items.Armor.Iron.chest", clickType);
+                        break;
+                    case IRON_LEGGINGS:
+                        itemTransaction(p, clicked, "Items.Armor.Iron.legs", clickType);
+                        break;
+                    case IRON_BOOTS:
+                        itemTransaction(p, clicked, "Items.Armor.Iron.feet", clickType);
+                        break;
+                    case GOLD_HELMET:
+                        itemTransaction(p, clicked, "Items.Armor.Gold.head", clickType);
+                        break;
+                    case GOLD_CHESTPLATE:
+                        itemTransaction(p, clicked, "Items.Armor.Gold.chest", clickType);
+                        break;
+                    case GOLD_LEGGINGS:
+                        itemTransaction(p, clicked, "Items.Armor.Gold.legs", clickType);
+                        break;
+                    case GOLD_BOOTS:
+                        itemTransaction(p, clicked, "Items.Armor.Gold.feet", clickType);
+                        break;
+                    case DIAMOND_HELMET:
+                        itemTransaction(p, clicked, "Items.Armor.Diamond.head", clickType);
+                        break;
+                    case DIAMOND_CHESTPLATE:
+                        itemTransaction(p, clicked, "Items.Armor.Diamond.chest", clickType);
+                        break;
+                    case DIAMOND_LEGGINGS:
+                        itemTransaction(p, clicked, "Items.Armor.Diamond.legs", clickType);
+                        break;
+                    case DIAMOND_BOOTS:
+                        itemTransaction(p, clicked, "Items.Armor.Diamond.feet", clickType);
+                        break;
+                    case ENDER_CHEST:
+                        p.closeInventory();
+                        break;
+                }
+            }
+        } else if (inv.getName().equals(weaponMenu.getName())) {
+            if (null != clicked.getType()) {
+                switch (clicked.getType()) {
+                    case WOOD_SWORD:
+                        itemTransaction(p, clicked, "Items.Weapons.Swords.Wood", clickType);
+                        break;
+                    case STONE_SWORD:
+                        itemTransaction(p, clicked, "Items.Weapons.Swords.Stone", clickType);
+                        break;
+                    case IRON_SWORD:
+                        itemTransaction(p, clicked, "Items.Weapons.Swords.Iron", clickType);
+                        break;
+                    case GOLD_SWORD:
+                        itemTransaction(p, clicked, "Items.Weapons.Swords.Gold", clickType);
+                        break;
+                    case DIAMOND_SWORD:
+                        itemTransaction(p, clicked, "Items.Weapons.Swords.Diamond", clickType);
+                        break;
+                    case BOW:
+                        itemTransaction(p, clicked, "Items.Weapons.Archery.Bow", clickType);
+                        break;
+                    case ARROW:
+                        itemTransaction(p, clicked, "Items.Weapons.Archery.Arrow", clickType);
+                        break;
+                    case ENDER_CHEST:
+                        p.closeInventory();
+                        break;
+                }
+            }
+        } else if (inv.getName().equals(toolMenu.getName())) {
+            if (null != clicked.getType()) {
+                switch (clicked.getType()) {
+                    case WOOD_PICKAXE:
+                        itemTransaction(p,clicked,"Items.Tools.Pickaxe.Wood",clickType);
+                        break;
+                    case STONE_PICKAXE:
+                        itemTransaction(p,clicked,"Items.Tools.Pickaxe.Stone",clickType);
+                        break;
+                    case IRON_PICKAXE:
+                        itemTransaction(p,clicked,"Items.Tools.Pickaxe.Iron",clickType);
+                        break;
+                    case GOLD_PICKAXE:
+                        itemTransaction(p,clicked,"Items.Tools.Pickaxe.Gold",clickType);
+                        break;
+                    case DIAMOND_PICKAXE:
+                        itemTransaction(p,clicked,"Items.Tools.Pickaxe.Diamond",clickType);
+                        break;
+                    case WOOD_AXE:
+                        itemTransaction(p,clicked,"Items.Tools.Axe.Wood",clickType);
+                        break;
+                    case STONE_AXE:
+                        itemTransaction(p,clicked,"Items.Tools.Axe.Stone",clickType);
+                        break;
+                    case IRON_AXE:
+                        itemTransaction(p,clicked,"Items.Tools.Axe.Iron",clickType);
+                        break;
+                    case GOLD_AXE:
+                        itemTransaction(p,clicked,"Items.Tools.Axe.Gold",clickType);
+                        break;
+                    case DIAMOND_AXE:
+                        itemTransaction(p,clicked,"Items.Tools.Axe.Diamond",clickType);
+                        break;
+                    case WOOD_SPADE:
+                        itemTransaction(p,clicked,"Items.Tools.Shovel.Wood",clickType);
+                        break;
+                    case STONE_SPADE:
+                        itemTransaction(p,clicked,"Items.Tools.Shovel.Stone",clickType);
+                        break;
+                    case IRON_SPADE:
+                        itemTransaction(p,clicked,"Items.Tools.Shovel.Iron",clickType);
+                        break;
+                    case GOLD_SPADE:
+                        itemTransaction(p,clicked,"Items.Tools.Shovel.Gold",clickType);
+                        break;
+                    case DIAMOND_SPADE:
+                        itemTransaction(p,clicked,"Items.Tools.Shovel.Diamond",clickType);
+                        break;
+                    case ENDER_CHEST:
+                        p.closeInventory();
+                }
+            }
+        } else if (inv.getName().equals(oreMenu.getName())) {
+            if (null != clicked.getType()) {
+                switch (clicked.getType()) {
+                    case COAL:
+                        itemTransaction(p,clicked,"Items.Mining.Ore.Coal",clickType);
+                        break;
+                    case IRON_ORE:
+                        itemTransaction(p,clicked,"Items.Mining.Ore.Iron",clickType);
+                        break;
+                    case GOLD_ORE:
+                        itemTransaction(p,clicked,"Items.Mining.Ore.Gold",clickType);
+                        break;
+                    case DIAMOND:
+                        itemTransaction(p,clicked,"Items.Mining.Ore.Diamond",clickType);
+                        break;
+                    case REDSTONE:
+                        itemTransaction(p,clicked,"Items.Mining.Ore.Redstone",clickType);
+                        break;
+                    case EMERALD:
+                        itemTransaction(p,clicked,"Items.Mining.Ore.Emerald",clickType);
+                        break;
+                    case LAPIS_ORE:
+                        itemTransaction(p,clicked,"Items.Mining.Ingots.Lapis",clickType);
+                        break;
+                    case IRON_INGOT:
+                        itemTransaction(p,clicked,"Items.Mining.Ingots.Iron",clickType);
+                        break;
+                    case GOLD_INGOT:
+                        itemTransaction(p,clicked,"Items.Mining.Ingots.Gold",clickType);
+                        break;
+                    case ENDER_CHEST:
+                        p.closeInventory();
+                        break;
+                }
+            }               
+        } else if (inv.getName().equals(farmMenu.getName())) {
+            if (null != clicked.getType()) {
+                switch (clicked.getType()) {
+                    case SEEDS:
+                        itemTransaction(p,clicked,"Items.Farming.Seeds.Wheat",clickType);
+                        break;
+                    case MELON_SEEDS:
+                        itemTransaction(p,clicked,"Items.Farming.Seeds.Melon",clickType);
+                        break;
+                    case PUMPKIN_SEEDS:
+                        itemTransaction(p,clicked,"Items.Farming.Seeds.Pumpkin",clickType);
+                        break;
+                    case COCOA:
+                        itemTransaction(p,clicked,"Items.Farming.Beans.Cocoa",clickType);
+                        break;
+                    case CARROT:
+                        itemTransaction(p,clicked,"Items.Farming.Plants.Carrot",clickType);
+                        break;
+                    case POTATO:
+                        itemTransaction(p,clicked,"Items.Farming.Plants.Potato",clickType);
+                        break;
+                    case MELON:
+                        itemTransaction(p,clicked,"Items.Farming.Blocks.Melon",clickType);
+                        break;
+                    case PUMPKIN:
+                        itemTransaction(p,clicked,"Items.Farming.Blocks.Pumpkin",clickType);
+                        break;
+                    case CACTUS:
+                        itemTransaction(p,clicked,"Items.Farming.Blocks.Cactus",clickType);
+                        break;
+                    case SUGAR_CANE:
+                        itemTransaction(p,clicked,"Items.Farming.Blocks.SugarCane",clickType);
+                        break;
+                    case ENDER_CHEST:
+                        p.closeInventory();
+                        break;
+                }
+            }          
         }
     }
 
@@ -149,7 +372,7 @@ public class CBShop extends JavaPlugin implements Listener {
         econ = rsp.getProvider();
         return econ != null;
     }
-    
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender instanceof Player) {
@@ -232,7 +455,7 @@ public class CBShop extends JavaPlugin implements Listener {
         createPurchaseItem(Material.DIAMOND_SWORD, weaponMenu, this.getConfig().getInt("Items.Weapons.Swords.Diamond.slot"), 1, this.getConfig().getInt("Items.Weapons.Swords.Diamond.cost"));
         // Create Archery
         createPurchaseItem(Material.BOW, weaponMenu, this.getConfig().getInt("Items.Weapons.Archery.Bow.slot"), 1, this.getConfig().getInt("Items.Weapons.Archery.Bow.cost"));
-        createPurchaseItem(Material.BOW, weaponMenu, this.getConfig().getInt("Items.Weapons.Archery.Arrow.slot"), this.getConfig().getInt("Items.Weapons.Archery.Arrow.amount"), this.getConfig().getInt("Items.Weapons.Archery.Arrow.cost"));
+        createPurchaseItem(Material.ARROW, weaponMenu, this.getConfig().getInt("Items.Weapons.Archery.Arrow.slot"), this.getConfig().getInt("Items.Weapons.Archery.Arrow.amount"), this.getConfig().getInt("Items.Weapons.Archery.Arrow.cost"));
 
         // Create Exit Button
         createMenuItem(Material.ENDER_CHEST, weaponMenu, 26, ChatColor.BLUE + "Exit", ChatColor.GRAY + "Click to exit to the main menu.");
@@ -337,7 +560,7 @@ public class CBShop extends JavaPlugin implements Listener {
         } else {
             this.getConfig().getInt(itemPath + ".amount");
         }
-        
+
         if (leftRight.isLeftClick()) { // Buy Item
             item.setAmount(amount);
             if (playerBalance >= cost) {
@@ -369,7 +592,7 @@ public class CBShop extends JavaPlugin implements Listener {
         } else {
             p.sendMessage(ChatColor.RED + "Unsupported Action (" + leftRight.name() + ").");
         }
-        
+
     }
 
     /**
@@ -384,7 +607,7 @@ public class CBShop extends JavaPlugin implements Listener {
      */
     public void createPurchaseItem(Material material, Inventory inv, int slot, int amount, int cost) {
         String lore;
-        
+
         ItemStack item = new ItemStack(material);
         item.setAmount(amount);
         ItemMeta meta = item.getItemMeta();
@@ -397,7 +620,7 @@ public class CBShop extends JavaPlugin implements Listener {
             getLogger().log(Level.INFO, "Nothing entered for the lore of {0}.", meta.getDisplayName());
         }
         item.setItemMeta(meta);
-        
+
         inv.setItem(slot, item);
     }
 
@@ -419,8 +642,8 @@ public class CBShop extends JavaPlugin implements Listener {
         Lore.add(lore);
         meta.setLore(Lore);
         item.setItemMeta(meta);
-        
+
         inv.setItem(Slot, item);
     }
-    
+
 }
