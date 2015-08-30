@@ -28,7 +28,7 @@ import org.inventivetalent.update.spigot.SpigotUpdater;
  * they want with cash in a nice clean GUI
  *
  * @author Systemx86 (Bananna)
- * @version 1.1.3
+ * @version 1.1.4
  */
 public class CBShop extends JavaPlugin implements Listener {
 
