@@ -1,6 +1,6 @@
 name: CBShop
 main: net.cubebeaters.CBShop
-version: 1.2.0
+version: 1.2.1
 author: Systemx86
 commands:
     Shop:
