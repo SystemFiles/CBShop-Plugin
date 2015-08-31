@@ -28,7 +28,7 @@ import org.inventivetalent.update.spigot.SpigotUpdater;
  * they want with cash in a nice clean GUI
  *
  * @author Systemx86 (Bananna)
- * @version 1.1.4
+ * @version 1.2.0
  */
 public class CBShop extends JavaPlugin implements Listener {
 
@@ -37,12 +37,12 @@ public class CBShop extends JavaPlugin implements Listener {
     private Economy econ;
 
     // Below Create all Inventory Menu's
-    private final Inventory mainMenu = Bukkit.createInventory(null, 18, MSG_PREFIX + " - Main Menu");
-    private final Inventory armorMenu = Bukkit.createInventory(null, 27, MSG_PREFIX + " - Armor");
-    private final Inventory weaponMenu = Bukkit.createInventory(null, 27, MSG_PREFIX + " - Weapons");
-    private final Inventory toolMenu = Bukkit.createInventory(null, 27, MSG_PREFIX + " - Tools");
-    private final Inventory oreMenu = Bukkit.createInventory(null, 27, MSG_PREFIX + " - Mining Produce");
-    private final Inventory farmMenu = Bukkit.createInventory(null, 27, MSG_PREFIX + " - Farming Produce");
+    private final Inventory mainMenu = Bukkit.createInventory(null, 18, ChatColor.DARK_AQUA + "Shop - Main Menu");
+    private final Inventory armorMenu = Bukkit.createInventory(null, 27, ChatColor.DARK_AQUA + "Shop - Armor");
+    private final Inventory weaponMenu = Bukkit.createInventory(null, 27, ChatColor.DARK_AQUA + "Shop - Weapons");
+    private final Inventory toolMenu = Bukkit.createInventory(null, 27, ChatColor.DARK_AQUA + "Shop - Tools");
+    private final Inventory oreMenu = Bukkit.createInventory(null, 27, ChatColor.DARK_AQUA + "Shop - Mining Produce");
+    private final Inventory farmMenu = Bukkit.createInventory(null, 27, ChatColor.DARK_AQUA + "Shop - Farming Produce");
 
     /**
      * Initializes the plugin.
@@ -67,12 +67,16 @@ public class CBShop extends JavaPlugin implements Listener {
         MSG_PREFIX = net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', this.getConfig().getString("Messages.CommandPrefix").replace("'", "").replace("'", ""));
         getLogger().info("Set. Done.");
 
-        try { // This will only work if plugin is on spigot.
-            getLogger().log(Level.INFO, "{0}Checking for new versions of CBShop", MSG_PREFIX);
-            SpigotUpdater su = new SpigotUpdater(this, resourceID);
-            getLogger().log(Level.INFO, "{0}Done", ChatColor.GREEN);
-        } catch (IOException ioe) {
-            getLogger().log(Level.INFO, "{0}\n\nIOException was thrown while attempting to load SpigotUpdater", ioe.getMessage());
+        if (this.getConfig().getBoolean("Use-Updater")) {
+            try { // This will only work if plugin is on spigot.
+                getLogger().log(Level.INFO, "{0}Checking for new versions of CBShop", MSG_PREFIX);
+                SpigotUpdater su = new SpigotUpdater(this, resourceID);
+                getLogger().log(Level.INFO, "{0}Done", ChatColor.GREEN);
+            } catch (IOException ioe) {
+                getLogger().log(Level.INFO, "{0}\n\nIOException was thrown while attempting to load SpigotUpdater", ioe.getMessage());
+            }
+        } else {
+            getLogger().log(Level.INFO, "{0}Plugin Updater use set to false in config. Continuing with a possibly outdated version.", MSG_PREFIX);
         }
     }
 
@@ -231,49 +235,49 @@ public class CBShop extends JavaPlugin implements Listener {
             if (null != clicked.getType()) {
                 switch (clicked.getType()) {
                     case WOOD_PICKAXE:
-                        itemTransaction(p,clicked,"Items.Tools.Pickaxe.Wood",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Pickaxe.Wood", clickType);
                         break;
                     case STONE_PICKAXE:
-                        itemTransaction(p,clicked,"Items.Tools.Pickaxe.Stone",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Pickaxe.Stone", clickType);
                         break;
                     case IRON_PICKAXE:
-                        itemTransaction(p,clicked,"Items.Tools.Pickaxe.Iron",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Pickaxe.Iron", clickType);
                         break;
                     case GOLD_PICKAXE:
-                        itemTransaction(p,clicked,"Items.Tools.Pickaxe.Gold",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Pickaxe.Gold", clickType);
                         break;
                     case DIAMOND_PICKAXE:
-                        itemTransaction(p,clicked,"Items.Tools.Pickaxe.Diamond",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Pickaxe.Diamond", clickType);
                         break;
                     case WOOD_AXE:
-                        itemTransaction(p,clicked,"Items.Tools.Axe.Wood",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Axe.Wood", clickType);
                         break;
                     case STONE_AXE:
-                        itemTransaction(p,clicked,"Items.Tools.Axe.Stone",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Axe.Stone", clickType);
                         break;
                     case IRON_AXE:
-                        itemTransaction(p,clicked,"Items.Tools.Axe.Iron",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Axe.Iron", clickType);
                         break;
                     case GOLD_AXE:
-                        itemTransaction(p,clicked,"Items.Tools.Axe.Gold",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Axe.Gold", clickType);
                         break;
                     case DIAMOND_AXE:
-                        itemTransaction(p,clicked,"Items.Tools.Axe.Diamond",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Axe.Diamond", clickType);
                         break;
                     case WOOD_SPADE:
-                        itemTransaction(p,clicked,"Items.Tools.Shovel.Wood",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Shovel.Wood", clickType);
                         break;
                     case STONE_SPADE:
-                        itemTransaction(p,clicked,"Items.Tools.Shovel.Stone",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Shovel.Stone", clickType);
                         break;
                     case IRON_SPADE:
-                        itemTransaction(p,clicked,"Items.Tools.Shovel.Iron",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Shovel.Iron", clickType);
                         break;
                     case GOLD_SPADE:
-                        itemTransaction(p,clicked,"Items.Tools.Shovel.Gold",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Shovel.Gold", clickType);
                         break;
                     case DIAMOND_SPADE:
-                        itemTransaction(p,clicked,"Items.Tools.Shovel.Diamond",clickType);
+                        itemTransaction(p, clicked, "Items.Tools.Shovel.Diamond", clickType);
                         break;
                     case ENDER_CHEST:
                         p.closeInventory();
@@ -283,75 +287,75 @@ public class CBShop extends JavaPlugin implements Listener {
             if (null != clicked.getType()) {
                 switch (clicked.getType()) {
                     case COAL:
-                        itemTransaction(p,clicked,"Items.Mining.Ore.Coal",clickType);
+                        itemTransaction(p, clicked, "Items.Mining.Ore.Coal", clickType);
                         break;
                     case IRON_ORE:
-                        itemTransaction(p,clicked,"Items.Mining.Ore.Iron",clickType);
+                        itemTransaction(p, clicked, "Items.Mining.Ore.Iron", clickType);
                         break;
                     case GOLD_ORE:
-                        itemTransaction(p,clicked,"Items.Mining.Ore.Gold",clickType);
+                        itemTransaction(p, clicked, "Items.Mining.Ore.Gold", clickType);
                         break;
                     case DIAMOND:
-                        itemTransaction(p,clicked,"Items.Mining.Ore.Diamond",clickType);
+                        itemTransaction(p, clicked, "Items.Mining.Ore.Diamond", clickType);
                         break;
                     case REDSTONE:
-                        itemTransaction(p,clicked,"Items.Mining.Ore.Redstone",clickType);
+                        itemTransaction(p, clicked, "Items.Mining.Ore.Redstone", clickType);
                         break;
                     case EMERALD:
-                        itemTransaction(p,clicked,"Items.Mining.Ore.Emerald",clickType);
+                        itemTransaction(p, clicked, "Items.Mining.Ore.Emerald", clickType);
                         break;
                     case LAPIS_ORE:
-                        itemTransaction(p,clicked,"Items.Mining.Ingots.Lapis",clickType);
+                        itemTransaction(p, clicked, "Items.Mining.Ingots.Lapis", clickType);
                         break;
                     case IRON_INGOT:
-                        itemTransaction(p,clicked,"Items.Mining.Ingots.Iron",clickType);
+                        itemTransaction(p, clicked, "Items.Mining.Ingots.Iron", clickType);
                         break;
                     case GOLD_INGOT:
-                        itemTransaction(p,clicked,"Items.Mining.Ingots.Gold",clickType);
+                        itemTransaction(p, clicked, "Items.Mining.Ingots.Gold", clickType);
                         break;
                     case ENDER_CHEST:
                         p.closeInventory();
                         break;
                 }
-            }               
+            }
         } else if (inv.getName().equals(farmMenu.getName())) {
             if (null != clicked.getType()) {
                 switch (clicked.getType()) {
                     case SEEDS:
-                        itemTransaction(p,clicked,"Items.Farming.Seeds.Wheat",clickType);
+                        itemTransaction(p, clicked, "Items.Farming.Seeds.Wheat", clickType);
                         break;
                     case MELON_SEEDS:
-                        itemTransaction(p,clicked,"Items.Farming.Seeds.Melon",clickType);
+                        itemTransaction(p, clicked, "Items.Farming.Seeds.Melon", clickType);
                         break;
                     case PUMPKIN_SEEDS:
-                        itemTransaction(p,clicked,"Items.Farming.Seeds.Pumpkin",clickType);
+                        itemTransaction(p, clicked, "Items.Farming.Seeds.Pumpkin", clickType);
                         break;
                     case COCOA:
-                        itemTransaction(p,clicked,"Items.Farming.Beans.Cocoa",clickType);
+                        itemTransaction(p, clicked, "Items.Farming.Beans.Cocoa", clickType);
                         break;
                     case CARROT:
-                        itemTransaction(p,clicked,"Items.Farming.Plants.Carrot",clickType);
+                        itemTransaction(p, clicked, "Items.Farming.Plants.Carrot", clickType);
                         break;
                     case POTATO:
-                        itemTransaction(p,clicked,"Items.Farming.Plants.Potato",clickType);
+                        itemTransaction(p, clicked, "Items.Farming.Plants.Potato", clickType);
                         break;
                     case MELON:
-                        itemTransaction(p,clicked,"Items.Farming.Blocks.Melon",clickType);
+                        itemTransaction(p, clicked, "Items.Farming.Blocks.Melon", clickType);
                         break;
                     case PUMPKIN:
-                        itemTransaction(p,clicked,"Items.Farming.Blocks.Pumpkin",clickType);
+                        itemTransaction(p, clicked, "Items.Farming.Blocks.Pumpkin", clickType);
                         break;
                     case CACTUS:
-                        itemTransaction(p,clicked,"Items.Farming.Blocks.Cactus",clickType);
+                        itemTransaction(p, clicked, "Items.Farming.Blocks.Cactus", clickType);
                         break;
                     case SUGAR_CANE:
-                        itemTransaction(p,clicked,"Items.Farming.Blocks.SugarCane",clickType);
+                        itemTransaction(p, clicked, "Items.Farming.Blocks.SugarCane", clickType);
                         break;
                     case ENDER_CHEST:
                         p.closeInventory();
                         break;
                 }
-            }          
+            }
         }
     }
 

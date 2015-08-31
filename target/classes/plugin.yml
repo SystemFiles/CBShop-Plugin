@@ -1,10 +1,9 @@
 name: CBShop
 main: net.cubebeaters.CBShop
-version: 1.1.4
+version: 1.2.0
 author: Systemx86
-depend: [Vault]
 commands:
     Shop:
-        description: Opens the Shop GUI so that players can purchase Items.
+        description: Opens the Shop GUI.
         permission: cbshop.shop
-        usage: &c Incorrect command usage. The correct usage is /Shop
+        usage: &c Incorrect command usage. /Shop
