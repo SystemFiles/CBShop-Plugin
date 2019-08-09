@@ -13,5 +13,4 @@ CBShop provides players access to the most important items in a clean easy to us
 
 
 ## Contact
-    Skype: lucem.designs, ixhadesix
-    Server: mc.cubebeaters.net
+    -- ben@sykesdev.ca
